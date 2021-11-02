@@ -20,7 +20,7 @@ config_string(
     "Default ZF_LOG_LEVEL for the ZF_LOG library. 5 is LOG_LEVEL_ERROR. 0 is \
     the most verbose setting."
     DEFAULT
-    0
+    5
     UNQUOTE
 )
 mark_as_advanced(LibUtilsDefaultZfLogLevel)

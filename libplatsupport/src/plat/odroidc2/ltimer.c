@@ -7,7 +7,7 @@
 #include <platsupport/ltimer.h>
 #include <platsupport/io.h>
 #include <utils/io.h>
-#include <platsupport/plat/cogent_meson.h>
+#include <platsupport/plat/meson_timer.h>
 
 #include "../../ltimer.h"
 
