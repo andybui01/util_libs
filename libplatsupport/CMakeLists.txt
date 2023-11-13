@@ -54,6 +54,16 @@ file(
 if(NOT ${LibPlatSupportMach} STREQUAL "")
     file(GLOB lib_deps "src/mach/${LibPlatSupportMach}/*.c")
     list(APPEND deps ${lib_deps})
+
+    # Edge case: some platforms are part of a mach (e.g. nvidia) but their
+    # mach timer is disabled, and instead the ARMv8 timer is used. In this
+    # case, the timer is exported to userspace, and if that is the case, we
+    # remove the mach timer files.
+    if(KernelArmExportPCNTUser AND KernelArmExportPTMRUser)
+        file(GLOB remove_deps "src/mach/${LibPlatSupportMach}/*timer.c")
+        list(REMOVE_ITEM deps ${remove_deps})
+        list(APPEND deps src/arch/arm/generic_ltimer.c)
+    endif()
 endif()
 
 if(KernelArchARM)
